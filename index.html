@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Масив і операції з ним</title>
+</head>
+<body>
+<script>
+function generateRandomArray(length, maxValue) {
+  return Array.from({ length }, () => Math.floor(Math.random() * maxValue) + 1);
+}
+function displayArray(array) {
+  document.write(`Масив: ${array.join(" ")}<br>`);
+}
+function calculateAverageExcludingC(array, c) {
+  const filteredNumbers = array.filter(number => number !== c);
+  if (filteredNumbers.length === 0) {
+    return NaN; // Відсутні числа для середнього арифметичного
+  }
+  const sum = filteredNumbers.reduce((total, number) => total + number, 0);
+  return sum / filteredNumbers.length;
+}
+function calculateProductOfNonPositiveAtEvenIndices(array) {
+  const product = array
+    .filter((number, index) => index % 2 === 0 && number <= 0)
+    .reduce((accumulator, number) => accumulator * number, 1);
+  return product;
+}
+const arrayLength = 15;
+const maxValue = 50;
+const myArray = generateRandomArray(arrayLength, maxValue);
+displayArray(myArray);
+const specifiedC = 20; 
+const averageExcludingC = calculateAverageExcludingC(myArray, specifiedC);
+const productOfNonPositive = calculateProductOfNonPositiveAtEvenIndices(myArray);
+document.write(`Середнє арифметичне чисел, нерівних ${specifiedC}: ${averageExcludingC}<br>`);
+document.write(`Добуток не додатних чисел на парних місцях: ${productOfNonPositive}`);
+</script>
+</body>
+</html>
